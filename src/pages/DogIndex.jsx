@@ -22,22 +22,11 @@ export function DogIndex() {
     async function onRemoveDog(dogId) {
         try {
             await removeDog(dogId)
-            showSuccessMsg('Dog removed')            
+            // showSuccessMsg('Dog removed')            
         } catch (err) {
-            showErrorMsg('Cannot remove dog')
+            // showErrorMsg('Cannot remove dog')
         }
     }
-
-    // async function onAddDog() {
-    //     const dog = dogService.getEmptyDog()
-    //     dog.age = prompt('Age?')
-    //     try {
-    //         const savedDog = await addDog(dog)
-    //         showSuccessMsg(`Dog added (id: ${savedDog._id})`)
-    //     } catch (err) {
-    //         showErrorMsg('Cannot add dog')
-    //     }        
-    // }
 
     async function onUpdateDog(dog) {
         const age = +prompt('New age?', dog.age)

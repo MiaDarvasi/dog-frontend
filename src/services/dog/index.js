@@ -6,13 +6,16 @@ import { dogService as local } from './dog.service.local'
 import { dogService as remote } from './dog.service.remote'
 
 function getEmptyDog() {
-	return {
-		name: '',
+    return {
+        name: "",
+        gender: "",
+        breed: "",
         age: 0,
-        breed: '',
-        gender: '',
-        
-	}
+        ownerName: "",
+        ownerPhone: "",
+        castrated: "",
+        // imgUrl: ""
+    }
 }
 
 function getDefaultFilter() {

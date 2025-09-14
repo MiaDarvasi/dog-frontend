@@ -23,20 +23,56 @@
         font-family: 'noto-light';
 
         label {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 2rem;
+
+            .radio-options {
+                display: flex;
+                gap: 1rem;
+
+                .radio-label {
+                    display: flex;
+                    place-items: center;
+                    gap: 0;
+                }
+            }
+
+            input {
+                border: 0.5px solid $clr3;
+                border-radius: 10px;
+                font-family: 'noto-thin';
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        button {
+            font-size: 1rem;
+            font-family: 'noto-light';
+            margin-block: 2rem;
+            justify-self: center;
+
+            &:hover {
+                font-size: 1.3rem;
+            }
         }
     }
 
-    button {
-        font-size: 1.2rem;
-        font-family: 'noto-light';
-        margin-block: 2rem;
-        justify-self: center;
 
-        &:hover {
-            font-size: 1.3rem;
+    .cancel {
+        position: fixed;
+        right: 3rem;
+        top: 1rem;
+        width: fit-content;
+        font-size: 1.1rem;
+
+        img {
+            transform: rotate(180deg);
+            transition: transform 0.3s ease, translate 0.3s ease;
+        }
+
+        img:hover {
+            transform: rotate(180deg) translateX(-5px);
         }
     }
 }

@@ -13,6 +13,7 @@ import { DogCounter } from "../cmps/DogCounter"
 
 import plus from '../assets/imgs/icons/plus.svg'
 import paw from '../assets/imgs/icons/paw_orange_full.svg'
+
 import { useNavigate } from "react-router"
 
 
