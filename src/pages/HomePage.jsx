@@ -15,6 +15,7 @@ import plus from '../assets/imgs/icons/plus.svg'
 import paw from '../assets/imgs/icons/paw_orange_full.svg'
 
 import { useNavigate } from "react-router"
+import { IncomeCounter } from "../cmps/IncomeCounter"
 
 
 export function HomePage() {
@@ -70,7 +71,13 @@ export function HomePage() {
             <h1><img src={paw} />פנסיון בהר</h1>
             <h2>ניהול ובקרת מידע על הכלבים שאצלנו בפנסיון</h2>
             <button className="add-btn" onClick={goToAddDog}> <img src={plus} /> <span>הוספת כלב חדש</span></button>
-            <DogCounter dogs={dogs} />
+            <section className="counters">
+                <DogCounter dogs={dogs} />
+                <IncomeCounter dogs={dogs} />
+            </section>
+            <DogFilter
+                filterBy={filterBy}
+                setFilterBy={setFilterBy} />
             <DogList
                 dogs={dogs}
                 onRemoveDog={onRemoveDog}

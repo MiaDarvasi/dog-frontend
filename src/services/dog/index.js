@@ -21,9 +21,7 @@ function getEmptyDog() {
 function getDefaultFilter() {
     return {
         name: '',
-        // age: '',
-        // sortField: '',
-        // sortDir: '',
+        breed: ''
     }
 }
 
