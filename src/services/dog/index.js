@@ -9,6 +9,7 @@ function getEmptyDog() {
     return {
         name: "",
         gender: "",
+        chip: "",
         breed: "",
         age: 0,
         ownerName: "",
@@ -20,8 +21,7 @@ function getEmptyDog() {
 
 function getDefaultFilter() {
     return {
-        name: '',
-        breed: ''
+        txt: '',
     }
 }
 

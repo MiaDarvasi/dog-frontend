@@ -1,159 +1,3 @@
-// import { useState } from "react"
-// import { addDog } from "../store/actions/dog.actions"
-// import { dogService } from "../services/dog"
-// import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service"
-// import { useNavigate } from "react-router"
-
-// import paw from '../assets/imgs/icons/paw_orange_full.svg'
-// import arrow from '../assets/imgs/icons/arrow_white.svg'
-
-
-// export function AddDog() {
-
-//   const [dog, setDog] = useState(dogService.getEmptyDog())
-//   const navigate = useNavigate()
-
-//   function handleChange(ev) {
-//     const { name, value } = ev.target
-//     setDog(prev => ({ ...prev, [name]: value }))
-//   }
-
-//   async function onAddDog(ev) {
-//     ev.preventDefault()
-//     try {
-//       const savedDog = await addDog(dog)
-//       console.log(savedDog)
-//       setDog(dogService.getEmptyDog())
-//       navigate("/")
-//     } catch (err) {
-//     }
-//   }
-
-//   return (
-//     <section className="add-dog" dir="rtl">
-//       <h1><img src={paw} />כלב חדש</h1>
-
-//       <form onSubmit={onAddDog} className="dog-form">
-
-//         <label>
-//           שם הכלב :
-//           <input
-//             type="text"
-//             name="name"
-//             value={dog.name || ""}
-//             onChange={handleChange}
-//             required
-//           />
-//         </label>
-
-//         <label>
-//           מין :
-//           <div className="gender-options radio-options">
-//             <label className="gender-label radio-label">
-//               <input
-//                 type="radio"
-//                 name="gender"
-//                 value="male"
-//                 checked={dog.gender === "male"}
-//                 onChange={handleChange}
-//               />
-//               זכר
-//             </label>
-
-//             <label className="gender-label radio-label">
-//               <input
-//                 type="radio"
-//                 name="gender"
-//                 value="female"
-//                 checked={dog.gender === "female"}
-//                 onChange={handleChange}
-//               />
-//               נקבה
-//             </label>
-//           </div>
-//         </label>
-
-//         <label>
-//           סוג הכלב :
-//           <input
-//             type="text"
-//             name="breed"
-//             value={dog.breed || ""}
-//             onChange={handleChange}
-//             required
-//           />
-//         </label>
-
-//         <label>
-//           גיל:
-//           <input
-//             type="number"
-//             name="age"
-//             value={dog.age || 0}
-//             onChange={handleChange}
-//             required
-//           />
-//         </label>
-
-//         <label>
-//           מסורס / מעוקרת :
-//           <div className="castrated-options radio-options">
-//             <label className="castrated-label radio-label">
-//               <input
-//                 type="radio"
-//                 name="castrated"
-//                 value="yes"
-//                 checked={dog.castrated === "yes"}
-//                 onChange={handleChange}
-//               />
-//               כן
-//             </label>
-
-//             <label className="castrated-label radio-label">
-//               <input
-//                 type="radio"
-//                 name="castrated"
-//                 value="no"
-//                 checked={dog.castrated === "no"}
-//                 onChange={handleChange}
-//               />
-//               לא
-//             </label>
-//           </div>
-//         </label>
-
-//         <label>
-//           שם הבעלים :
-//           <input
-//             type="text"
-//             name="ownerName"
-//             value={dog.ownerName || ""}
-//             onChange={handleChange}
-//           />
-//         </label>
-
-//         <label>
-//           טלפון בעלים :
-//           <input
-//             type="tel"
-//             name="ownerPhone"
-//             value={dog.ownerPhone || ""}
-//             onChange={handleChange}
-//           />
-//         </label>
-
-//         <button type="submit">שמור כלב</button>
-//       </form>
-//       <button
-//         onClick={() => navigate("/")}
-//         className="cancel">
-//         <img src={arrow} />
-//       </button>
-//     </section>
-//   )
-// }
-
-
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router"
 import { addDog, updateDog } from "../store/actions/dog.actions"
@@ -170,7 +14,6 @@ export function AddDog() {
   const navigate = useNavigate()
   const { dogId } = useParams()
 
-  // If editing, load the dog data
   useEffect(() => {
     async function loadDog() {
       if (dogId) {
@@ -245,6 +88,17 @@ export function AddDog() {
               נקבה
             </label>
           </div>
+        </label>
+
+        <label>
+           מספר צ׳יפ :
+          <input
+            type="text"
+            name="chip"
+            value={dog.chip || ""}
+            onChange={handleChange}
+            required
+          />
         </label>
 
         <label>

@@ -11,34 +11,25 @@ export function DogFilter({ filterBy, setFilterBy }) {
     }, [filterToEdit])
 
     function handleChange(ev) {
-        const { name, value } = ev.target
-        setFilterToEdit({ ...filterToEdit, [name]: value })
+        const { value } = ev.target
+        setFilterToEdit({ ...filterToEdit, txt: value })
     }
 
     function onClearFilter() {
-        const clearedFilter = { ...filterToEdit, name: '', breed: '' }
-        setFilterToEdit(clearedFilter)
+        setFilterToEdit({ ...filterToEdit, txt: '' })
     }
 
     return (
         <section className="dog-filter">
-            <img src={search} alt="search icon" />
+            <img className="dog-filter-search" src={search} alt="search icon" />
             <input
                 type="text"
-                name="name"
-                value={filterToEdit.name}
-                placeholder="חפש לפי שם"
-                onChange={handleChange}
-            />
-            <input
-                type="text"
-                name="breed"
-                value={filterToEdit.breed}
-                placeholder="חפש לפי גזע"
+                name="txt"
+                value={filterToEdit.txt}
+                placeholder="חפש לפי שם, גזע או מספר צ׳יפ"
                 onChange={handleChange}
             />
 
-            {/* Clear button */}
             <button className="btn-clear" onClick={onClearFilter}>
                 <img src={plus} />
             </button>

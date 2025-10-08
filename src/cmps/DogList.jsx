@@ -23,9 +23,9 @@ export function DogList({ dogs, onRemoveDog, onUpdateDog }) {
             <ul className="list">
                 {dogs.map(dog =>
                     <li key={dog._id}>
-                        <DogPreview dog={dog}/>
+                        <DogPreview dog={dog} />
                         <button onClick={() => confirmRemove(dog._id)}>
-                            <img src={trash} alt="delete"/>
+                            <img src={trash} alt="delete" />
                         </button>
                     </li>
                 )}
@@ -34,7 +34,7 @@ export function DogList({ dogs, onRemoveDog, onUpdateDog }) {
             {dogToRemove && (
                 <div className="modal-overlay">
                     <div className="modal">
-                        <p>האם אתה בטוח שברצונך למחוק את הכלב?</p>
+                        <p>סגור על זה?</p>
                         <div className="actions">
                             <button onClick={handleRemove}>כן</button>
                             <button onClick={closeModal}>לא</button>

@@ -1,35 +1,47 @@
 .dog-filter {
-    display: flex;
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
     align-items: center;
-    gap: 1rem;
 
-    padding: 1rem 2rem;
-    background-color: rgb(254, 244, 219);
+    background-color: white;
     border-radius: 10px;
-    border: 0.5px solid $clr4;
-
+    border: 1px solid $clr4;
     margin-block: 1rem;
+    transition: box-shadow 0.2s, border 0.2s;
+
+    &:focus-within {
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .dog-filter-search {
+        max-height: 1.7rem;
+        margin-inline: 0.5rem;
+    }
 
     input {
         border: none;
         border-radius: 10px;
-        padding: 1rem 2rem;
-        width: 80%;
-        font-family: 'noto-thin';
+        padding-block: 1rem;
+        font-family: 'noto-light';
+        color: $gray3;
+        outline: none;
     }
 
     .btn-clear {
         padding: 0.5rem 0.5rem;
-        height: fit-content;
+        height: 100%;
+        margin: 0;
 
         img {
             transform: rotate(45deg);
-            max-height: 2rem;
+            max-height: 1.7rem;
+            transition: 0.4s;
         }
 
         &:hover {
-            scale: 1.2;
+            img {
+                transform: rotate(225deg);
+            }
         }
     }
-
 }
