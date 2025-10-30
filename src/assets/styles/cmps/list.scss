@@ -6,14 +6,15 @@
     gap: .5em;
 
     li {
-        display: flex;
-        flex-direction: column;
+        max-width: 300px;
         background-color: white;
 
         border: 0.5px solid $clr3;
         border-radius: 10px;
 
         button {
+            position: relative;
+            left: -35%;
             width: fit-content;
             aspect-ratio: 1/1;
 

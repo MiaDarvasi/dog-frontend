@@ -78,6 +78,14 @@ export function HomePage() {
             <DogFilter
                 filterBy={filterBy}
                 setFilterBy={setFilterBy} />
+
+            {dogs.length === 0 && (
+                <p className="no-results">
+                    אופס! לא נמצאו כלבים תואמים 🐶🔍<br />
+                    נסה לשנות את השם, הגזע או מספר הצ׳יפ
+                </p>
+            )}
+
             <DogList
                 dogs={dogs}
                 onRemoveDog={onRemoveDog}
