@@ -8,6 +8,9 @@ import calendar from '../assets/imgs/icons/calendar.svg'
 import phone from '../assets/imgs/icons/phone.svg'
 import person from '../assets/imgs/icons/person.svg'
 import edit from '../assets/imgs/icons/edit.svg'
+import add from '../assets/imgs/icons/add-white.svg'
+import calendar2 from '../assets/imgs/icons/calendar-white.svg'
+
 
 export function DogPreview({ dog }) {
 
@@ -21,10 +24,17 @@ export function DogPreview({ dog }) {
                 <h1>{dog.name}</h1>
                 <p>{dog.breed ? dog.breed : dog.gender === 'female' ? 'מעורבת' : 'מעורב'}</p>
             </section>
-            <Link to={`/add/dog/${dog._id}`} className="edit-btn">
-                <img src={edit} alt="edit" />
-            </Link>
+            <section className='header-actions'>
+                <Link to={`/add/dog/${dog._id}`} className="edit-btn">
+                    <img src={edit} alt="edit" />
+                </Link>
+                <Link to={`/stay/add/${dog._id}`} className="add-stay-btn">
+                        <img src={add} />
+                        <img src={calendar2} />
+                </Link>
+            </section>
         </header>
+
 
         <section className='dog-details'>
 

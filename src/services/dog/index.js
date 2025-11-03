@@ -15,6 +15,7 @@ function getEmptyDog() {
         ownerName: "",
         ownerPhone: "",
         castrated: "",
+        pricePerDay: 200,
         // imgUrl: ""
     }
 }

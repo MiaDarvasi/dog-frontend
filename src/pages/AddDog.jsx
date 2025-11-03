@@ -170,6 +170,17 @@ export function AddDog() {
           />
         </label>
 
+        <label>
+          מחיר ליום:
+          <input
+            type="number"
+            name="pricePerDay"
+            value={dog.pricePerDay || 150}
+            onChange={handleChange}
+            required
+          />
+        </label>
+
         <button type="submit">{dog._id ? "עדכן כלב" : "שמור כלב"}</button>
       </form>
 

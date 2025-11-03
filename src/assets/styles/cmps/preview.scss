@@ -17,10 +17,6 @@
         color: white;
 
         section {
-            // display: flex;
-            // flex-direction: column;
-            // align-items: start;
-
             display: grid;
         }
 
@@ -34,27 +30,44 @@
             font-family: 'noto-thin';
         }
 
-        .edit-btn {
+        .header-actions {
             position: relative;
             bottom: -80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            grid-column: 1/-1;
 
-            grid-column: 2;
-            justify-self: end;
-
-            width: max-content;
-
-            background-color: transparent;
-            padding: 0.4rem;
-            border-radius: 50%;
-
-            transition: 0.4s;
-
-            &:hover {
-                background-color: rgba(255, 255, 255, 30%);
-            }
 
             img {
-                max-height: 1.7rem;
+                max-height: 2rem;
+            }
+
+            .add-stay-btn {
+                display: flex;
+                margin-inline: 0.3rem;
+
+                img {
+                    padding: 0.2rem;
+                    transition: 0.3s;
+                }
+
+                &:hover img {
+                    background-color: rgba(255, 255, 255, 25%);
+                }
+            }
+
+            .edit-btn {
+                padding: 0.2rem;
+                transition: 0.3s;
+
+                img {
+                    max-height: 1.7rem;
+                }
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 25%);
+                }
             }
         }
     }
@@ -113,6 +126,27 @@
             }
         }
     }
+
+    // .add-stay-btn {
+    //     display: flex;
+    //     gap: 0;
+    //     justify-content: end;
+    //     margin-inline-end: 0.5rem;
+    //     margin-block-start: 0.5rem;
+
+    //     section {
+    //         display: flex;
+    //         padding: 0.2rem;
+    //         border-radius: 10px;
+    //         transition: 0.3s;
+    //         border: 0.5px solid rgb(219, 218, 218);
+
+    //         &:hover {
+    //             background-color: rgb(242, 241, 240);
+    //         }
+    //     }
+
+    // }
 
 
 }
