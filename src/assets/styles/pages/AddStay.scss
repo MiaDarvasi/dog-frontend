@@ -1,0 +1,54 @@
+.add-stay {
+    display: flex;
+    flex-direction: column;
+    
+    max-width: fit-content;
+    margin: auto;
+    
+    h1 {
+        margin-block: 3rem 1rem;
+        font-family: 'noto-reg';
+        font-size: 1.5rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        font-family: 'noto-light';
+
+        label {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        button {
+            width: fit-content;
+            align-self: center;
+
+            &:hover {
+                scale: 1.1;
+            }
+        }
+    }
+
+
+    .cancel {
+        position: fixed;
+        right: 3rem;
+        top: 1rem;
+        width: fit-content;
+        font-size: 1.1rem;
+
+        img {
+            transform: rotate(180deg);
+            transition: transform 0.3s ease, translate 0.3s ease;
+        }
+
+        img:hover {
+            transform: rotate(180deg) translateX(-5px);
+        }
+    }
+}

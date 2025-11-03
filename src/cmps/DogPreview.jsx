@@ -1,5 +1,8 @@
+
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import info from '../assets/imgs/icons/info.svg'
 import paw from '../assets/imgs/icons/paw_white_full.svg'
 import male from '../assets/imgs/icons/male.svg'
 import female from '../assets/imgs/icons/female.svg'
@@ -11,58 +14,93 @@ import edit from '../assets/imgs/icons/edit.svg'
 import add from '../assets/imgs/icons/add-white.svg'
 import calendar2 from '../assets/imgs/icons/calendar-white.svg'
 
-
 export function DogPreview({ dog }) {
+    const [showModal, setShowModal] = useState(false)
 
-    return <article className="preview">
+    function openModal() {
+        setShowModal(true)
+    }
 
-        <header>
-            <div className='img-container'>
-                <img src={paw} />
-            </div>
-            <section>
-                <h1>{dog.name}</h1>
-                <p>{dog.breed ? dog.breed : dog.gender === 'female' ? 'מעורבת' : 'מעורב'}</p>
-            </section>
-            <section className='header-actions'>
-                <Link to={`/add/dog/${dog._id}`} className="edit-btn">
-                    <img src={edit} alt="edit" />
-                </Link>
-                <Link to={`/stay/add/${dog._id}`} className="add-stay-btn">
-                        <img src={add} />
-                        <img src={calendar2} />
-                </Link>
-            </section>
-        </header>
+    function closeModal() {
+        setShowModal(false)
+    }
 
+    return (
+        <>
+            <article className="preview">
 
-        <section className='dog-details'>
-
-            <section className='dog-gender details-ctg'>
-                <img src={dog.gender === 'female' ? female : male} />
-                <p>{dog.gender === 'female' ? 'נקבה' : 'זכר'}</p>
-                {dog.castrated === 'no' &&
-                    <div className='warning'>
-                        <img src={warning} />
-                        <p>{dog.gender === 'female' ? 'לא מעוקרת' : 'לא מסורס'}</p>
+                <header>
+                    <div className='img-container'>
+                        <img src={paw} />
                     </div>
-                }
-            </section>
+                    <section>
+                        <h1>{dog.name}</h1>
+                        <p>{dog.breed ? dog.breed : dog.gender === 'female' ? 'מעורבת' : 'מעורב'}</p>
+                    </section>
+                    <section className='header-actions'>
+                        <Link to={`/add/dog/${dog._id}`} className="edit-btn">
+                            <img src={edit} alt="edit" />
+                        </Link>
+                        <Link to={`/stay/add/${dog._id}`} className="add-stay-btn">
+                            <img src={add} />
+                            <img src={calendar2} />
+                        </Link>
+                    </section>
+                    <button className="details-btn details-ctg" onClick={openModal}> <img src={info} /></button>
+                </header>
 
-            <p className='details-ctg'>
-                <img src={calendar} />
-                {dog.gender === 'female' ? ' בת' : ' בן'}&nbsp;
-                {dog.age.toLocaleString() === '1' ? 'שנה' : `${dog.age.toLocaleString()} שנים`}
-            </p>
 
-            <p className='details-ctg'><img src={person} />{dog.ownerName}</p>
-            <p className='details-ctg'>
-                <img src={phone} />
-                <a href={`tel:${dog.ownerPhone}`}>{dog.ownerPhone}</a>
-            </p>
+                <section className='dog-details'>
+                    <section className='dog-gender details-ctg'>
+                        <img src={dog.gender === 'female' ? female : male} />
+                        <p>{dog.gender === 'female' ? 'נקבה' : 'זכר'}</p>
+                        {dog.castrated === 'no' &&
+                            <div className='warning'>
+                                <img src={warning} />
+                                <p>{dog.gender === 'female' ? 'לא מעוקרת' : 'לא מסורס'}</p>
+                            </div>
+                        }
+                    </section>
 
-        </section>
+                    <p className='details-ctg'>
+                        <img src={calendar} />
+                        {dog.gender === 'female' ? ' בת' : ' בן'}&nbsp;
+                        {dog.age.toLocaleString() === '1' ? 'שנה' : `${dog.age.toLocaleString()} שנים`}
+                    </p>
 
+                    <p className='details-ctg'><img src={person} />{dog.ownerName}</p>
+                    <p className='details-ctg'>
+                        <img src={phone} />
+                        <a href={`tel:${dog.ownerPhone}`}>{dog.ownerPhone}</a>
+                    </p>
+                </section>
+            </article>
 
-    </article>
+            {showModal && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal" onClick={e => e.stopPropagation()}>
+                        <h2>פרטי הכלב</h2>
+                        <p><strong>שם:</strong> {dog.name}</p>
+                        <p><strong>גזע:</strong> {dog.breed}</p>
+                        <p><strong>מין:</strong> {dog.gender === 'female' ? 'נקבה' : 'זכר'}</p>
+                        <p><strong>גיל:</strong> {dog.age}</p>
+                        <p><strong>מסורס/מעוקרת:</strong> {dog.castrated}</p>
+                        <p><strong>מספר צ׳יפ:</strong> {dog.chip}</p>
+                        <p><strong>שם בעלים:</strong> {dog.ownerName}</p>
+                        <p><strong>טלפון בעלים:</strong> {dog.ownerPhone}</p>
+                        <p><strong>מחיר ליום:</strong> {dog.pricePerDay}</p>
+                        <p><strong>מחיר תספורת:</strong> {dog.haircutPrice}</p>
+                        <p><strong>ציוד שהביא:</strong> {dog.equipment}</p>
+                        <p><strong>מיקום ציוד:</strong> {dog.equipmentLoc}</p>
+                        <p><strong>תרופות:</strong> {dog.med}</p>
+                        <p><strong>אוכל מיוחד:</strong> {dog.specialFood}</p>
+                        <p><strong>צבע קולר:</strong> {dog.collarColor}</p>
+                        <p><strong>מספר פנסיון:</strong> {dog.ourNum}</p>
+                        <p><strong>הערות:</strong> {dog.notes}</p>
+                        <button onClick={closeModal}>סגור</button>
+                    </div>
+                </div>
+            )}
+        </>
+    )
 }

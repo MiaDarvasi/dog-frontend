@@ -4,6 +4,8 @@ import { showErrorMsg } from '../services/event-bus.service'
 import { dogService } from '../services/dog'
 import { stayService } from '../services/stay.service'
 
+import arrow from '../assets/imgs/icons/arrow_white.svg'
+
 
 export function AddStay() {
     const { dogId } = useParams()
@@ -78,7 +80,12 @@ export function AddStay() {
 
 
                 <button type="submit">שמור</button>
+
             </form>
+            
+            <button onClick={() => navigate("/")} className="cancel">
+                <img src={arrow} />
+            </button>
         </section>
     )
 }

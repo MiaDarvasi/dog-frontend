@@ -15,10 +15,26 @@ function getEmptyDog() {
         ownerName: "",
         ownerPhone: "",
         castrated: "",
-        pricePerDay: 200,
+        pricePerDay: 150,
+        haircutPrice: 0,
+        equipment: "",
+        equipmentLoc: "",
+        med: "",
+        specialFood: "",
+        collarColor: "",
+        ourNum: "",
+        notes: "",
         // imgUrl: ""
     }
 }
+
+// haircutPrice: dog.haircutPrice,
+// equipment: dog.equipment,
+// equipmentLoc: dog.equipmentLoc,
+// med: dog.med,
+// specialFood: dog.specialFood,
+// collarColor: dog.collarColor,
+// ourNum: dog.ourNum,
 
 function getDefaultFilter() {
     return {

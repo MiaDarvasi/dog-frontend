@@ -3,7 +3,8 @@ import { httpService } from './http.service'
 
 export const stayService = {
     addStay,
-    query
+    query,
+    remove
 }
 
 
@@ -14,4 +15,8 @@ async function addStay(stayData) {
 
 async function query(filterBy = {}) {
     return httpService.get('stay', filterBy)
+}
+
+async function remove(stayId) {
+    return httpService.delete(`stay/${stayId}`)
 }
