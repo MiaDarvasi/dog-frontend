@@ -175,16 +175,25 @@ export function HomePage() {
 
             <div className="home-actions">
                 <button
-                    className="toggle-list-btn"
-                    onClick={() => setShowStaying(prev => !prev)}>
-                    {showStaying ? 'כל הכלבים' : 'כלבים בפנסיון ומוזמנים'}
-                </button>
-
-                <button
                     className="add-btn"
                     onClick={goToAddDog}>
                     <img src={plus} /> <span>הוספת כלב חדש</span>
                 </button>
+                <div className="toggle-buttons">
+                    <button
+                        className={`toggle-list-btn ${showStaying ? 'selected' : ''}`}
+                        onClick={() => setShowStaying(true)}
+                        disabled={showStaying}>
+                        כלבים בפנסיון / עתידיים
+                    </button>
+
+                    <button
+                        className={`toggle-list-btn ${!showStaying ? 'selected' : ''}`}
+                        onClick={() => setShowStaying(false)}
+                        disabled={!showStaying}>
+                        כל הכלבים
+                    </button>
+                </div>
             </div>
 
             <section className="counters">
@@ -195,7 +204,7 @@ export function HomePage() {
             <DogFilter filterBy={filterBy} setFilterBy={setFilterBy} />
 
             {showStaying ? (
-                <StayList />
+                <StayList filterBy={filterBy} />
             ) : (
                 <DogList
                     dogs={dogs}

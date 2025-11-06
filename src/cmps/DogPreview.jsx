@@ -27,16 +27,20 @@ export function DogPreview({ dog }) {
 
     return (
         <>
-            <article className="preview">
+            <article className="dog-preview">
 
                 <header>
+                    <button className="details-btn" onClick={openModal}> <img src={info} /></button>
+
                     <div className='img-container'>
                         <img src={paw} />
                     </div>
-                    <section>
+
+                    <section className='dog-header-info'>
                         <h1>{dog.name}</h1>
                         <p>{dog.breed ? dog.breed : dog.gender === 'female' ? 'מעורבת' : 'מעורב'}</p>
                     </section>
+
                     <section className='header-actions'>
                         <Link to={`/add/dog/${dog._id}`} className="edit-btn">
                             <img src={edit} alt="edit" />
@@ -46,7 +50,8 @@ export function DogPreview({ dog }) {
                             <img src={calendar2} />
                         </Link>
                     </section>
-                    <button className="details-btn details-ctg" onClick={openModal}> <img src={info} /></button>
+
+
                 </header>
 
 
@@ -78,13 +83,12 @@ export function DogPreview({ dog }) {
 
             {showModal && (
                 <div className="modal-overlay" onClick={closeModal}>
-                    <div className="modal" onClick={e => e.stopPropagation()}>
+                    <div className="info-modal" onClick={e => e.stopPropagation()}>
                         <h2>פרטי הכלב</h2>
                         <p><strong>שם:</strong> {dog.name}</p>
                         <p><strong>גזע:</strong> {dog.breed}</p>
                         <p><strong>מין:</strong> {dog.gender === 'female' ? 'נקבה' : 'זכר'}</p>
                         <p><strong>גיל:</strong> {dog.age}</p>
-                        <p><strong>מסורס/מעוקרת:</strong> {dog.castrated}</p>
                         <p><strong>מספר צ׳יפ:</strong> {dog.chip}</p>
                         <p><strong>שם בעלים:</strong> {dog.ownerName}</p>
                         <p><strong>טלפון בעלים:</strong> {dog.ownerPhone}</p>

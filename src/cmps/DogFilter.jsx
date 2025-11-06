@@ -7,8 +7,10 @@ export function DogFilter({ filterBy, setFilterBy }) {
     const [filterToEdit, setFilterToEdit] = useState(filterBy)
 
     useEffect(() => {
-        setFilterBy(filterToEdit)
-    }, [filterToEdit])
+        // Always update parent filter when input changes — even when cleared
+        setFilterBy({ ...filterToEdit, txt: filterToEdit.txt || '' })
+    }, [filterToEdit.txt])
+    
 
     function handleChange(ev) {
         const { value } = ev.target

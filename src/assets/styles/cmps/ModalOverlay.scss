@@ -1,0 +1,22 @@
+.modal-overlay {
+    z-index: 1000;
+
+    .info-modal {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 10px;
+
+        h2 {
+            font-family: 'noto-reg';
+        }
+
+        p {
+            font-family: 'noto-thin';
+        }
+
+        button {
+            color: $gray4;
+            margin: 1rem 1rem 0 1rem;
+        }
+    }
+}

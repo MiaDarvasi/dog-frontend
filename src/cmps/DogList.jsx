@@ -24,7 +24,8 @@ export function DogList({ dogs, onRemoveDog, onUpdateDog }) {
                 {dogs.map(dog =>
                     <li key={dog._id}>
                         <DogPreview dog={dog} />
-                        <button onClick={() => confirmRemove(dog._id)}>
+                        <button className='delete-dog'
+                        onClick={() => confirmRemove(dog._id)}>
                             <img src={trash} alt="delete" />
                         </button>
                     </li>
