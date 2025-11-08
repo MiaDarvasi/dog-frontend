@@ -6,24 +6,27 @@
     header {
         display: grid;
         grid-template-columns: 1fr 4fr;
-        gap: 1rem;
+        column-gap: 0.5rem;
+        row-gap: 1rem;
         align-items: center;
 
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
 
         background: linear-gradient(to right, #F97316, #f9a907);
-        padding: 1rem;
+        padding: 0.5rem;
         color: white;
 
         h1 {
             font-size: 1.2rem;
             font-family: 'noto-bold';
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
         }
 
         p {
             color: whitesmoke;
             font-family: 'noto-thin';
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
         }
 
         .details-btn {
@@ -82,7 +85,7 @@
 
             img {
                 transform: rotate(-20deg);
-                padding: 0.7rem;
+                padding: 0.3rem;
             }
         }
     }
@@ -134,3 +137,4 @@
         background-color: rgb(162, 162, 162);
     }
 }
+

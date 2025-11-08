@@ -2,21 +2,48 @@
     z-index: 1000;
 
     .info-modal {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
         background-color: white;
-        padding: 1rem;
+        padding: 1.2rem;
         border-radius: 10px;
 
         h2 {
             font-family: 'noto-reg';
+            color: rgb(255, 145, 0);
         }
 
         p {
             font-family: 'noto-thin';
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         button {
             color: $gray4;
             margin: 1rem 1rem 0 1rem;
+        }
+
+        strong {
+            font-family: 'noto-reg';
+        }
+
+        hr {
+            color: $gray4;
+            width: 100%;
+            border: 0.5px solid $gray4;
+        }
+
+        section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .main-dog-img {
+                max-height: 3.3rem;
+            }
         }
     }
 }

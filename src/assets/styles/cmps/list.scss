@@ -1,20 +1,23 @@
 .list {
-    --min-column-size: 220px;
+    --min-column-size: 150px;
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--min-column-size), 1fr));
     gap: .5em;
 
     li {
-        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+        place-items: center;
+
+
+        max-width: 200px;
         background-color: white;
 
         border: 0.5px solid $clr3;
         border-radius: 10px;
 
         button {
-            position: relative;
-            left: -35%;
             width: fit-content;
             aspect-ratio: 1/1;
 

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 import info from '../assets/imgs/icons/info.svg'
 import paw from '../assets/imgs/icons/paw_white_full.svg'
+import dogimg from '../assets/imgs/icons/dog.svg'
+import num from '../assets/imgs/icons/num.svg'
 import male from '../assets/imgs/icons/male.svg'
 import female from '../assets/imgs/icons/female.svg'
 import warning from '../assets/imgs/icons/warning.svg'
@@ -11,11 +13,17 @@ import calendar from '../assets/imgs/icons/calendar.svg'
 import phone from '../assets/imgs/icons/phone.svg'
 import person from '../assets/imgs/icons/person.svg'
 import edit from '../assets/imgs/icons/edit.svg'
+import price from '../assets/imgs/icons/price.svg'
 import add from '../assets/imgs/icons/add-white.svg'
 import calendar2 from '../assets/imgs/icons/calendar-white.svg'
 
 export function DogPreview({ dog }) {
+
     const [showModal, setShowModal] = useState(false)
+    const isStaying =
+        dog.stay &&
+        new Date(dog.stay.startDate) <= now &&
+        new Date(dog.stay.endDate) >= now
 
     function openModal() {
         setShowModal(true)
@@ -25,11 +33,20 @@ export function DogPreview({ dog }) {
         setShowModal(false)
     }
 
+    console.log(dog.imgUrl)
+
     return (
         <>
-            <article className="dog-preview">
+            <article className={`dog-preview ${isStaying ? 'staying' : ''}`}>
 
-                <header>
+                <header
+                    style={dog.imgUrl ? {
+                        backgroundImage: `url(${dog.imgUrl})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                    } : {}}
+                >
+
                     <button className="details-btn" onClick={openModal}> <img src={info} /></button>
 
                     <div className='img-container'>
@@ -84,16 +101,21 @@ export function DogPreview({ dog }) {
             {showModal && (
                 <div className="modal-overlay" onClick={closeModal}>
                     <div className="info-modal" onClick={e => e.stopPropagation()}>
-                        <h2>פרטי הכלב</h2>
-                        <p><strong>שם:</strong> {dog.name}</p>
-                        <p><strong>גזע:</strong> {dog.breed}</p>
-                        <p><strong>מין:</strong> {dog.gender === 'female' ? 'נקבה' : 'זכר'}</p>
-                        <p><strong>גיל:</strong> {dog.age}</p>
-                        <p><strong>מספר צ׳יפ:</strong> {dog.chip}</p>
-                        <p><strong>שם בעלים:</strong> {dog.ownerName}</p>
-                        <p><strong>טלפון בעלים:</strong> {dog.ownerPhone}</p>
-                        <p><strong>מחיר ליום:</strong> {dog.pricePerDay}</p>
-                        <p><strong>מחיר תספורת:</strong> {dog.haircutPrice}</p>
+                        <section>
+                            <img className='main-dog-img' src={dogimg} />
+                            <article>
+                                <p><strong>שם:</strong> {dog.name}</p>
+                                <p><strong>גזע:</strong> {dog.breed}</p>
+                            </article>
+                        </section>
+                        <p><img src={dog.gender === 'female' ? female : male} /><strong>מין:</strong> {dog.gender === 'female' ? 'נקבה' : 'זכר'}</p>
+                        <p><img src={calendar} /><strong>גיל:</strong> {dog.age}</p>
+                        <p><img src={num} /><strong>מספר צ׳יפ:</strong> {dog.chip}</p>
+                        <p><img src={person} /><strong>שם בעלים:</strong> {dog.ownerName}</p>
+                        <p><img src={phone} /><strong>טלפון בעלים:</strong> {dog.ownerPhone}</p>
+                        <p><img src={price} /><strong>מחיר ליום:</strong> {dog.pricePerDay}</p>
+                        <p><img src={price} /><strong>מחיר תספורת:</strong> {dog.haircutPrice}</p>
+                        <hr />
                         <p><strong>ציוד שהביא:</strong> {dog.equipment}</p>
                         <p><strong>מיקום ציוד:</strong> {dog.equipmentLoc}</p>
                         <p><strong>תרופות:</strong> {dog.med}</p>
@@ -101,7 +123,7 @@ export function DogPreview({ dog }) {
                         <p><strong>צבע קולר:</strong> {dog.collarColor}</p>
                         <p><strong>מספר פנסיון:</strong> {dog.ourNum}</p>
                         <p><strong>הערות:</strong> {dog.notes}</p>
-                        <button onClick={closeModal}>סגור</button>
+                        {/* <button onClick={closeModal}>סגור</button> */}
                     </div>
                 </div>
             )}
