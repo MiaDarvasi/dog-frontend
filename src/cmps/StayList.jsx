@@ -1,112 +1,3 @@
-// import { useEffect, useState } from "react"
-// import { stayService } from "../services/stay.service"
-// import { dogService } from "../services/dog"
-// import { showErrorMsg } from "../services/event-bus.service"
-// import { DogPreview } from "./DogPreview"
-// import trash from '../assets/imgs/icons/trash.svg'
-
-// export function StayList() {
-//     const [stays, setStays] = useState([])
-//     const [loading, setLoading] = useState(true)
-//     const [stayToRemove, setStayToRemove] = useState(null)
-
-//     useEffect(() => {
-//         loadStays()
-//     }, [])
-
-//     async function loadStays() {
-//         try {
-//             setLoading(true)
-//             const allStays = await stayService.query()
-//             const now = new Date()
-
-//             // Filter to current or future stays
-//             const active = allStays.filter(stay => new Date(stay.endDate) >= now)
-
-//             // Enrich stays with dog data
-//             const staysWithDogs = await Promise.all(
-//                 active.map(async stay => {
-//                     const dog = await dogService.getById(stay.dogId)
-//                     return { ...stay, dog }
-//                 })
-//             )
-
-//             // Sort by soonest end date
-//             staysWithDogs.sort((a, b) => new Date(a.endDate) - new Date(b.endDate))
-//             setStays(staysWithDogs)
-//         } catch (err) {
-//             console.error('Error loading stays:', err)
-//             showErrorMsg('שגיאה בטעינת שהיות')
-//         } finally {
-//             setLoading(false)
-//         }
-//     }
-
-//     function confirmRemove(stayId) {
-//         setStayToRemove(stayId)
-//     }
-
-//     async function handleRemove() {
-//         if (!stayToRemove) return
-
-//         try {
-//             await stayService.remove(stayToRemove)
-//             setStays(prev => prev.filter(stay => stay._id !== stayToRemove))
-//         } catch (err) {
-//             console.error('Cannot remove stay:', err)
-//             showErrorMsg('שגיאה במחיקת השהייה')
-//         } finally {
-//             setStayToRemove(null)
-//         }
-//     }
-
-
-//     function closeModal() {
-//         setStayToRemove(null)
-//     }
-
-//     if (loading) return <p>טוען שהיות...</p>
-//     if (!stays.length) return <p>אין כלבים שנמצאים או עתידים להגיע 🐾</p>
-
-//     return (
-//         <section>
-//             <ul className="list">
-//                 {stays.map(stay => (
-//                     <li key={stay._id}>
-//                         <div className="dog-preview-wrapper">
-//                             <DogPreview dog={stay.dog} />
-
-//                             <div className="stay-info">
-//                                 <p> מתאריך: {new Date(stay.startDate).toLocaleDateString('he-IL')}</p>
-//                                 <p> עד תאריך: {new Date(stay.endDate).toLocaleDateString('he-IL')}</p>
-//                                 <p> סה"כ ימים: {stay.days}</p>
-//                                 <p> מחיר: {stay.price} ש"ח</p>
-//                             </div>
-//                         </div>
-
-//                         <button onClick={() => confirmRemove(stay._id)}>
-//                             <img src={trash} alt="delete stay" />
-//                         </button>
-//                     </li>
-//                 ))}
-//             </ul>
-
-//             {stayToRemove && (
-//                 <div className="modal-overlay">
-//                     <div className="modal">
-//                         <p>בטוח שברצונך למחוק את השהייה?</p>
-//                         <div className="actions">
-//                             <button onClick={handleRemove}>כן</button>
-//                             <button onClick={closeModal}>לא</button>
-//                         </div>
-//                     </div>
-//                 </div>
-//             )}
-//         </section>
-//     )
-// }
-
-
 import { useEffect, useState } from "react"
 import { stayService } from "../services/stay.service"
 import { dogService } from "../services/dog"
@@ -115,7 +6,8 @@ import { DogPreview } from "./DogPreview"
 import trash from '../assets/imgs/icons/trash.svg'
 
 export function StayList({ filterBy }) {
-    const [stays, setStays] = useState([])
+    const [allStays, setAllStays] = useState([])  // all stays
+    const [stays, setStays] = useState([])        // filtered stays
     const [loading, setLoading] = useState(true)
     const [stayToRemove, setStayToRemove] = useState(null)
 
@@ -124,38 +16,47 @@ export function StayList({ filterBy }) {
     }, [])
 
     useEffect(() => {
-        // Filter stays locally when filter changes
-        if (!filterBy?.txt) return
-        const txt = filterBy.txt.toLowerCase()
-        setStays(prev => prev.filter(stay =>
-            stay.dog.name.toLowerCase().includes(txt) ||
-            stay.dog.breed?.toLowerCase().includes(txt) ||
-            stay.dog.chip?.toString().includes(txt)
-        ))
-    }, [filterBy])
+        applyFilter()
+    }, [filterBy, allStays])
 
     async function loadStays() {
         try {
             setLoading(true)
-            const allStays = await stayService.query()
+            const all = await stayService.query()
             const now = new Date()
-            const active = allStays.filter(stay => new Date(stay.endDate) >= now)
+            const active = all.filter(stay => new Date(stay.endDate) >= now)
 
-            const staysWithDogs = await Promise.all(
+            const withDogs = await Promise.all(
                 active.map(async stay => {
                     const dog = await dogService.getById(stay.dogId)
                     return { ...stay, dog }
                 })
             )
 
-            staysWithDogs.sort((a, b) => new Date(a.endDate) - new Date(b.endDate))
-            setStays(staysWithDogs)
+            withDogs.sort((a, b) => new Date(a.endDate) - new Date(b.endDate))
+            setAllStays(withDogs)
+            setStays(withDogs) // initial display
         } catch (err) {
             console.error('Error loading stays:', err)
             showErrorMsg('שגיאה בטעינת שהיות')
         } finally {
             setLoading(false)
         }
+    }
+
+    function applyFilter() {
+        if (!filterBy?.txt) {
+            setStays(allStays)
+            return
+        }
+
+        const txt = filterBy.txt.toLowerCase()
+        const filtered = allStays.filter(stay =>
+            stay.dog.name.toLowerCase().includes(txt) ||
+            stay.dog.breed?.toLowerCase().includes(txt) ||
+            stay.dog.chip?.toString().includes(txt)
+        )
+        setStays(filtered)
     }
 
     function confirmRemove(stayId) {
@@ -166,6 +67,7 @@ export function StayList({ filterBy }) {
         if (!stayToRemove) return
         try {
             await stayService.remove(stayToRemove)
+            setAllStays(prev => prev.filter(stay => stay._id !== stayToRemove))
             setStays(prev => prev.filter(stay => stay._id !== stayToRemove))
         } catch (err) {
             console.error('Cannot remove stay:', err)
@@ -189,7 +91,14 @@ export function StayList({ filterBy }) {
                     <li key={stay._id}>
                         <div className="dog-preview-wrapper">
                             <DogPreview dog={stay.dog} />
-                            <div className="stay-info">
+                            <div
+                                className={`stay-info ${
+                                    new Date(stay.startDate) <= new Date() &&
+                                    new Date(stay.endDate) >= new Date()
+                                        ? 'currently-staying'
+                                        : ''
+                                }`}
+                            >
                                 <p>מתאריך: {new Date(stay.startDate).toLocaleDateString('he-IL')}</p>
                                 <p>עד תאריך: {new Date(stay.endDate).toLocaleDateString('he-IL')}</p>
                                 <p>סה"כ ימים: {stay.days}</p>

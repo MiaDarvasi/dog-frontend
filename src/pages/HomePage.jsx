@@ -62,6 +62,11 @@ export function HomePage() {
                     onClick={goToAddDog}>
                     <img src={plus} /> <span>הוספת כלב חדש</span>
                 </button>
+                <button
+                    className="feeding-btn"
+                    onClick={() => navigate('/feeding-checklist')}>
+                    🍽️ <span>צ'קליסט האכלות</span>
+                </button>
                 <div className="toggle-buttons">
                     <button
                         className={`toggle-list-btn ${showStaying ? 'selected' : ''}`}

@@ -15,6 +15,8 @@ import person from '../assets/imgs/icons/person.svg'
 import edit from '../assets/imgs/icons/edit.svg'
 import price from '../assets/imgs/icons/price.svg'
 import add from '../assets/imgs/icons/add-white.svg'
+import city from '../assets/imgs/icons/city.svg'
+import grass from '../assets/imgs/icons/grass.svg'
 import calendar2 from '../assets/imgs/icons/calendar-white.svg'
 
 export function DogPreview({ dog }) {
@@ -32,8 +34,6 @@ export function DogPreview({ dog }) {
     function closeModal() {
         setShowModal(false)
     }
-
-    console.log(dog.imgUrl)
 
     return (
         <>
@@ -73,16 +73,18 @@ export function DogPreview({ dog }) {
 
 
                 <section className='dog-details'>
+
+                    {dog.castrated === 'no' &&
+                        <div className='warning'>
+                            <img src={warning} />
+                            <p>{dog.gender === 'female' ? 'לא מעוקרת' : 'לא מסורס'}</p>
+                        </div>
+                    }
                     <section className='dog-gender details-ctg'>
                         <img src={dog.gender === 'female' ? female : male} />
                         <p>{dog.gender === 'female' ? 'נקבה' : 'זכר'}</p>
-                        {dog.castrated === 'no' &&
-                            <div className='warning'>
-                                <img src={warning} />
-                                <p>{dog.gender === 'female' ? 'לא מעוקרת' : 'לא מסורס'}</p>
-                            </div>
-                        }
                     </section>
+
 
                     <p className='details-ctg'>
                         <img src={calendar} />
@@ -110,9 +112,15 @@ export function DogPreview({ dog }) {
                         </section>
                         <p><img src={dog.gender === 'female' ? female : male} /><strong>מין:</strong> {dog.gender === 'female' ? 'נקבה' : 'זכר'}</p>
                         <p><img src={calendar} /><strong>גיל:</strong> {dog.age}</p>
+                        <p><img src={grass} /><strong>חצר:</strong> {dog.size === 'big' ? 'גדולים' : dog.size === 'small' ? 'קטנים' : '-'}</p>
                         <p><img src={num} /><strong>מספר צ׳יפ:</strong> {dog.chip}</p>
                         <p><img src={person} /><strong>שם בעלים:</strong> {dog.ownerName}</p>
-                        <p><img src={phone} /><strong>טלפון בעלים:</strong> {dog.ownerPhone}</p>
+                        <p>
+                            <img src={phone} />
+                            <strong>טלפון בעלים:</strong>{' '}
+                            <a href={`tel:${dog.ownerPhone}`}>{dog.ownerPhone}</a>
+                        </p>
+                        <p><img src={city} /><strong> עיר:</strong> {dog.city || 'לא צוין'}</p>
                         <p><img src={price} /><strong>מחיר ליום:</strong> {dog.pricePerDay}</p>
                         <p><img src={price} /><strong>מחיר תספורת:</strong> {dog.haircutPrice}</p>
                         <hr />

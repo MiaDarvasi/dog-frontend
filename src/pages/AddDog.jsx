@@ -65,6 +65,8 @@ export function AddDog() {
         collarColor: dog.collarColor || '',
         ourNum: dog.ourNum || '',
         notes: dog.notes || '',
+        size: dog.size || '',
+        city: dog.city || '',
       }
 
       const savedDog = dog._id
@@ -110,6 +112,29 @@ export function AddDog() {
           <input type="text" name="breed" value={dog.breed} onChange={handleChange} required />
         </label>
 
+        <label>גודל הכלב :
+          <div className="size-options radio-options">
+            <label className="radio-label">
+              <input
+                type="radio"
+                name="size"
+                value="small"
+                checked={dog.size === "small"}
+                onChange={handleChange}
+              /> קטן
+            </label>
+            <label className="radio-label">
+              <input
+                type="radio"
+                name="size"
+                value="big"
+                checked={dog.size === "big"}
+                onChange={handleChange}
+              /> גדול
+            </label>
+          </div>
+        </label>
+
         <label>גיל :
           <input type="number" name="age" value={dog.age} onChange={handleChange} required />
         </label>
@@ -131,6 +156,15 @@ export function AddDog() {
 
         <label>טלפון בעלים :
           <input type="tel" name="ownerPhone" value={dog.ownerPhone} onChange={handleChange} />
+        </label>
+
+        <label>כתובת בעלים :
+          <input
+            type="text"
+            name="city"
+            value={dog.city}
+            onChange={handleChange}
+          />
         </label>
 
         {/* --- Prices --- */}

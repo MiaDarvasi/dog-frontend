@@ -1,18 +1,24 @@
 .dog-preview-wrapper {
     .stay-info {
+        margin-block-end: 1rem;
         display: grid;
         gap: 0.5rem;
         margin-inline: 0.5rem;
         padding: 0.5rem;
         // border: 2px dotted rgb(142, 193, 235);
         background-color: aliceblue;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
 
         border-radius: 10px;
+
+        &.currently-staying {
+            background-color: rgb(195, 235, 198);
+        }
 
         p {
             font-family: 'noto-thin';
             font-size: 1rem;
         }
     }
+
 }

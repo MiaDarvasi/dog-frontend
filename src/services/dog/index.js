@@ -24,6 +24,8 @@ function getEmptyDog() {
         collarColor: "",
         ourNum: "",
         notes: "",
+        size: "",
+        city: "",
         // imgUrl: ""
     }
 }
