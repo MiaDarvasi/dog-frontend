@@ -18,6 +18,7 @@ import add from '../assets/imgs/icons/add-white.svg'
 import city from '../assets/imgs/icons/city.svg'
 import grass from '../assets/imgs/icons/grass.svg'
 import calendar2 from '../assets/imgs/icons/calendar-white.svg'
+import { DogInfoModal } from './DogInfoModal'
 
 export function DogPreview({ dog }) {
 
@@ -100,41 +101,7 @@ export function DogPreview({ dog }) {
                 </section>
             </article>
 
-            {showModal && (
-                <div className="modal-overlay" onClick={closeModal}>
-                    <div className="info-modal" onClick={e => e.stopPropagation()}>
-                        <section>
-                            <img className='main-dog-img' src={dogimg} />
-                            <article>
-                                <p><strong>שם:</strong> {dog.name}</p>
-                                <p><strong>גזע:</strong> {dog.breed}</p>
-                            </article>
-                        </section>
-                        <p><img src={dog.gender === 'female' ? female : male} /><strong>מין:</strong> {dog.gender === 'female' ? 'נקבה' : 'זכר'}</p>
-                        <p><img src={calendar} /><strong>גיל:</strong> {dog.age}</p>
-                        <p><img src={grass} /><strong>חצר:</strong> {dog.size === 'big' ? 'גדולים' : dog.size === 'small' ? 'קטנים' : '-'}</p>
-                        <p><img src={num} /><strong>מספר צ׳יפ:</strong> {dog.chip}</p>
-                        <p><img src={person} /><strong>שם בעלים:</strong> {dog.ownerName}</p>
-                        <p>
-                            <img src={phone} />
-                            <strong>טלפון בעלים:</strong>{' '}
-                            <a href={`tel:${dog.ownerPhone}`}>{dog.ownerPhone}</a>
-                        </p>
-                        <p><img src={city} /><strong> עיר:</strong> {dog.city || 'לא צוין'}</p>
-                        <p><img src={price} /><strong>מחיר ליום:</strong> {dog.pricePerDay}</p>
-                        <p><img src={price} /><strong>מחיר תספורת:</strong> {dog.haircutPrice}</p>
-                        <hr />
-                        <p><strong>ציוד שהביא:</strong> {dog.equipment}</p>
-                        <p><strong>מיקום ציוד:</strong> {dog.equipmentLoc}</p>
-                        <p><strong>תרופות:</strong> {dog.med}</p>
-                        <p><strong>אוכל מיוחד:</strong> {dog.specialFood}</p>
-                        <p><strong>צבע קולר:</strong> {dog.collarColor}</p>
-                        <p><strong>מספר פנסיון:</strong> {dog.ourNum}</p>
-                        <p><strong>הערות:</strong> {dog.notes}</p>
-                        {/* <button onClick={closeModal}>סגור</button> */}
-                    </div>
-                </div>
-            )}
+            {showModal && <DogInfoModal dog={dog} onClose={() => setShowModal(false)} />}
         </>
     )
 }

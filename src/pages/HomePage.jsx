@@ -14,6 +14,7 @@ import { StayList } from "../cmps/StayList"
 
 import plus from '../assets/imgs/icons/plus.svg'
 import paw from '../assets/imgs/icons/paw_orange_full.svg'
+import { YardCounter } from "../cmps/YardCounter"
 
 export function HomePage() {
     const [filterBy, setFilterBy] = useState(dogService.getDefaultFilter())
@@ -86,7 +87,7 @@ export function HomePage() {
 
             <section className="counters">
                 <DogCounter dogs={dogs} />
-                <IncomeCounter dogs={dogs} />
+                <YardCounter />
             </section>
 
             <DogFilter filterBy={filterBy} setFilterBy={setFilterBy} />

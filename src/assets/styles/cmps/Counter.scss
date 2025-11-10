@@ -1,7 +1,7 @@
 .counter {
     // margin-block-start: 6rem;
     display: flex;
-    gap: 0.7rem;
+    gap: 0.5rem;
 
     width: fit-content;
 
@@ -12,10 +12,11 @@
     border: 1px solid $clr3;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
 
-    h1{
+    h1 {
         color: $gray4;
         font-size: 1.2rem;
         font-family: 'noto-light';
+        width: max-content;
     }
 
     p {
@@ -29,5 +30,32 @@
         height: 3rem;
         align-self: center;
         transform: scaleX(-1);
+    }
+
+    &.yard-counter {
+
+        section {
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        article {
+            display: flex;
+            flex-direction: column;
+            place-items: center;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 65%;
+        }
+
+        img {
+            position: relative;
+            right: 5%;
+            max-height: 4rem;
+        }
     }
 }
