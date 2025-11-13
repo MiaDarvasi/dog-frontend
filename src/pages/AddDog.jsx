@@ -21,7 +21,7 @@ export function AddDog() {
           const dogToEdit = await dogService.getById(dogId)
           setDog(dogToEdit)
         } catch (err) {
-          showErrorMsg("לא ניתן לטעון כלב")
+          // showErrorMsg("לא ניתן לטעון כלב")
         }
       }
       setIsLoading(false)
@@ -35,7 +35,6 @@ export function AddDog() {
     setDog(prev => {
       let val = value
 
-      // Convert numeric inputs to numbers
       if (type === 'number') val = +value || 0
 
       return { ...prev, [name]: val }
@@ -45,7 +44,6 @@ export function AddDog() {
   async function onSaveDog(ev) {
     ev.preventDefault()
     try {
-      // Ensure all optional fields are defined before sending to backend
       const dogToSave = {
         ...dog,
         name: dog.name || '',
@@ -67,6 +65,7 @@ export function AddDog() {
         notes: dog.notes || '',
         size: dog.size || '',
         city: dog.city || '',
+        imgUrl: dog.imgUrl || ''
       }
 
       const savedDog = dog._id
@@ -77,7 +76,7 @@ export function AddDog() {
       navigate("/")
     } catch (err) {
       console.error('Cannot save dog:', err)
-      showErrorMsg("שגיאה בשמירת כלב")
+      // showErrorMsg("שגיאה בשמירת כלב")
     }
   }
 

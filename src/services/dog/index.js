@@ -26,7 +26,7 @@ function getEmptyDog() {
         notes: "",
         size: "",
         city: "",
-        // imgUrl: ""
+        imgUrl: "",
     }
 }
 
