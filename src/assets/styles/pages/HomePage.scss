@@ -28,6 +28,19 @@
 
         margin-block: 1rem;
 
+
+        .total-dog-counter {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            // box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid $clr4;
+            padding: 0.4rem;
+            border-radius: 10px;
+
+
+        }
+
         .toggle-buttons {
             display: flex;
             gap: 1rem;

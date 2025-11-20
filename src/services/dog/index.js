@@ -16,7 +16,7 @@ function getEmptyDog() {
         ownerPhone: "",
         castrated: "",
         pricePerDay: 150,
-        haircutPrice: 0,
+        haircutPrice: "",
         equipment: "",
         equipmentLoc: "",
         med: "",

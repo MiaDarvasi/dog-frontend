@@ -57,7 +57,9 @@ export function HomePage() {
             <h1><img src={paw} />פנסיון בהר</h1>
             <h2>ניהול ובקרת מידע על הכלבים שאצלנו בפנסיון</h2>
 
+
             <div className="home-actions">
+                <div className="total-dog-counter">סה״כ כלבים במערכת: {dogs.length}</div>
                 <button
                     className="add-btn"
                     onClick={goToAddDog}>
