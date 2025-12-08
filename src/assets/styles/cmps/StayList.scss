@@ -1,4 +1,4 @@
-.dog-preview-wrapper {
+.stay-list {
     .stay-info {
         margin-block-end: 1rem;
         display: grid;
@@ -20,5 +20,51 @@
             font-size: 1rem;
         }
     }
+
+    .leaving-soon {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-block-end: 1.5rem;
+
+        .leaving-column {
+            background-color: #ffffff; // light orange-ish
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+
+            h3 {
+                font-family: 'noto-med';
+                color: #f97316;
+                margin-bottom: 0.5rem;
+                font-size: 1rem;
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+
+                li {
+                    font-family: 'noto-light';
+                    font-size: 0.9rem;
+
+                    display: flex;
+                    gap: 0.2rem;
+                    align-items: center;
+                }
+            }
+
+            p {
+                font-family: 'noto-light';
+                font-size: 0.9rem;
+                margin: 0;
+            }
+        }
+    }
+
 
 }
