@@ -22,14 +22,44 @@ export function FeedingChecklist() {
         loadStayingDogs()
     }, [dogs])
 
+    // async function loadStayingDogs() {
+    //     try {
+    //         const stays = await stayService.query()
+    //         const now = new Date()
+
+    //         const activeStays = stays.filter(stay =>
+    //             new Date(stay.startDate) <= now && new Date(stay.endDate) >= now
+    //         )
+
+    //         const dogIds = activeStays.map(stay => stay.dogId)
+    //         const currentDogs = dogs.filter(dog => dogIds.includes(dog._id))
+
+    //         setStayingDogs(currentDogs)
+    //     } catch (err) {
+    //         console.error('Cannot load staying dogs:', err)
+    //     }
+    // }
+
     async function loadStayingDogs() {
         try {
             const stays = await stayService.query()
-            const now = new Date()
 
-            const activeStays = stays.filter(stay =>
-                new Date(stay.startDate) <= now && new Date(stay.endDate) >= now
-            )
+            // 🔸 Normalize “today” to the start of the day
+            const today = new Date()
+            today.setHours(0, 0, 0, 0)
+
+            // 🔸 Keep only dogs that are CURRENTLY staying:
+            // startDate <= today <= endDate
+            const activeStays = stays.filter(stay => {
+                const start = new Date(stay.startDate)
+                const end = new Date(stay.endDate)
+
+                // Normalize stay dates to start of day as well
+                start.setHours(0, 0, 0, 0)
+                end.setHours(0, 0, 0, 0)
+
+                return start <= today && end >= today
+            })
 
             const dogIds = activeStays.map(stay => stay.dogId)
             const currentDogs = dogs.filter(dog => dogIds.includes(dog._id))
