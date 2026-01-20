@@ -42,7 +42,7 @@ export function DogInfoModal({ dog, onClose }) {
                 <p><strong>ציוד שהביא:</strong> {dog.equipment}</p>
                 <p><strong>מיקום ציוד:</strong> {dog.equipmentLoc}</p>
                 <p><strong>תרופות:</strong> {dog.med}</p>
-                <p><strong>אוכל מיוחד:</strong> {dog.specialFood}</p>
+                <p><strong>סוג פרווה</strong> {dog.specialFood}</p>
                 <p><strong>צבע קולר:</strong> {dog.collarColor}</p>
                 <p><strong>מספר פנסיון:</strong> {dog.ourNum}</p>
                 <p><strong>הערות:</strong> {dog.notes}</p>

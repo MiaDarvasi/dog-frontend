@@ -188,7 +188,7 @@ export function AddDog() {
           <input type="text" name="med" value={dog.med} onChange={handleChange} />
         </label>
 
-        <label>אוכל מיוחד :
+        <label>סוג פרווה:
           <input type="text" name="specialFood" value={dog.specialFood} onChange={handleChange} />
         </label>
 
